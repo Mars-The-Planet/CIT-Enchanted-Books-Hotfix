@@ -2,6 +2,8 @@ package com.mars.cithotfix.platform;
 
 import com.mars.cithotfix.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.resources.ResourceLocation;
 
 import static com.mars.cithotfix.CommonClass.REGISTERED_MODEL_IDS;
@@ -21,5 +23,10 @@ public class FabricPlatformHelper implements IPlatformHelper {
     @Override
     public boolean isDevelopmentEnvironment() {
         return FabricLoader.getInstance().isDevelopmentEnvironment();
+    }
+
+    @Override
+    public BakedModel getModel(ResourceLocation id, ModelManager manager) {
+        return manager.getModel(id);
     }
 }

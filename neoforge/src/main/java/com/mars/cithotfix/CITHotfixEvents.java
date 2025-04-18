@@ -1,6 +1,7 @@
 package com.mars.cithotfix;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -20,7 +21,7 @@ public class CITHotfixEvents {
         for (ResourceLocation id : ids){
             ResourceLocation model = id.withPrefix("item/ebooks/");
             REGISTERED_MODEL_IDS.put(id, model);
-            event.register(model);
+            event.register(ModelResourceLocation.standalone(model));
         }
     }
 }

@@ -8,8 +8,7 @@
   "client": [
     "SpriteSourceListMixin",
     "ItemRendererMixin",
-    "ModelBakeryMixin",
-    "ModelManagerMixin"
+    "ModelBakeryMixin"
   ],
   "server": [],
   "injectors": {

@@ -2,7 +2,7 @@ package com.mars.cithotfix.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.mars.cithotfix.MultiLoaderModelManager;
+import com.mars.cithotfix.platform.Services;
 import net.minecraft.client.renderer.ItemModelShaper;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
@@ -36,8 +36,9 @@ public class ItemRendererMixin {
         String enchantName = enchantId.toString().substring(enchantId.toString().lastIndexOf(":")+1);
 
         BakedModel model = !Objects.equals(enchantId.toString(), "minecraft:sweeping_edge") ?
-                ((MultiLoaderModelManager) modelManager).getModel(OfVariant(new ResourceLocation("minecraft", BOOK_FOLDER + enchantName))) :
-                ((MultiLoaderModelManager) modelManager).getModel(OfVariant(new ResourceLocation("minecraft", BOOK_FOLDER + "sweeping")));
+                Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + enchantName)), modelManager) :
+                Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + "sweeping")), modelManager);
+
         return (model!=null && model != modelManager.getMissingModel()) ? model : original.call(models, stack);
     }
 }

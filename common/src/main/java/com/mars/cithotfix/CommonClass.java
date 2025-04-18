@@ -27,7 +27,7 @@ public class CommonClass {
         for(ResourceLocation id : resourceManager.listResources(folder, id -> id.getPath().endsWith(".png")).keySet()){
             String path = id.getPath();
             path = path.substring(folder.length()+1, path.length()-".png".length());
-            IDs.add(new ResourceLocation(id.getNamespace(), path));
+            IDs.add(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), path));
             if(path.contains("/")){
                 BOOK_FOLDER = path.substring(0, path.indexOf("/")+1);
             }
