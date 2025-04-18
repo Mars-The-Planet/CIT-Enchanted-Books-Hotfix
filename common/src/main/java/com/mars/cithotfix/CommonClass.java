@@ -21,7 +21,7 @@ public class CommonClass {
         return REGISTERED_MODEL_IDS.get(variantId);
     }
 
-    static Set<ResourceLocation> getTextures(ResourceManager resourceManager){
+    public static Set<ResourceLocation> getTextures(ResourceManager resourceManager){
         Set<ResourceLocation> IDs = new HashSet<>();
         String folder = "optifine/cit";
         for(ResourceLocation id : resourceManager.listResources(folder, id -> id.getPath().endsWith(".png")).keySet()){

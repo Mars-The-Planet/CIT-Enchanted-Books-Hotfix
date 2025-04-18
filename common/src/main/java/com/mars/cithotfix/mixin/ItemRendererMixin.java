@@ -13,7 +13,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.Objects;
@@ -22,11 +24,12 @@ import static com.mars.cithotfix.CommonClass.BOOK_FOLDER;
 import static com.mars.cithotfix.CommonClass.OfVariant;
 
 @Mixin(ItemRenderer.class)
-public class ItemRendererMixin {
+public abstract class ItemRendererMixin {
+    @Shadow private @Final ModelManager modelManager;
+
     @WrapOperation(method="getModel", at=@At( value="INVOKE", target="net/minecraft/client/renderer/ItemModelShaper.getItemModel(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/resources/model/BakedModel;"))
     private BakedModel getModel(ItemModelShaper models, ItemStack stack, Operation<BakedModel> original)
     {
-        final ModelManager modelManager = models.getModelManager();
 
         if (!stack.is(Items.ENCHANTED_BOOK) || !EnchantmentHelper.hasAnyEnchantments(stack))
             return original.call(models, stack);
