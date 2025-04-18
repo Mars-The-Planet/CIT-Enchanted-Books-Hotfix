@@ -22,13 +22,6 @@ public class CITHotfixEvents {
         for (Map.Entry<ResourceLocation, ResourceLocation> entry : REGISTERED_MODEL_IDS.entrySet()) {
             event.register(ModelResourceLocation.standalone(entry.getValue()));
         }
-//        Set<ResourceLocation> ids = CommonClass.getTextures(Minecraft.getInstance().getResourceManager());
-//        for (ResourceLocation id : ids){
-//            System.out.println("onRegisterModel: " + id);
-//            ResourceLocation model = id.withPrefix("item/ebooks/");
-//            REGISTERED_MODEL_IDS.put(id, model);
-//            event.register(ModelResourceLocation.standalone(model));
-//        }
     }
 
     @SubscribeEvent

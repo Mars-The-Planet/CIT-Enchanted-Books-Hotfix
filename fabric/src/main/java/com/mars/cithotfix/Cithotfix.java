@@ -35,10 +35,8 @@ public class Cithotfix implements ModInitializer, ClientModInitializer, Preparab
     public void initialize(Set<ResourceLocation> ids, ModelLoadingPlugin.Context context) {
         REGISTERED_MODEL_IDS = new HashMap<>();
         for (ResourceLocation id : ids){
-            //System.out.println("onRegisterModel: " + id);
             ResourceLocation model = id.withPrefix("item/ebooks/");
             REGISTERED_MODEL_IDS.put(id, model);
-            System.out.println("initialize: " + id + " " + model);
             context.addModels(model);
         }
     }

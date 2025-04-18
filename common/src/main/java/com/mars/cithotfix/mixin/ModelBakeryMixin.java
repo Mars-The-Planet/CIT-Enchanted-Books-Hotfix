@@ -25,13 +25,10 @@ public class ModelBakeryMixin {
     public void loadBlockModel(UnbakedModel missingModel, Map<ResourceLocation, UnbakedModel> inputs, BlockStateModelLoader.LoadedModels definition, CallbackInfoReturnable<ModelDiscovery> cir, @Local(argsOnly=true) LocalRef<Map<ResourceLocation, UnbakedModel>> inputRef){
         inputs = new HashMap<>(inputs);
         inputRef.set(inputs);
-        System.out.println("ModelBakeryMixin0: " + REGISTERED_MODEL_IDS.entrySet());
-        System.out.println("ModelBakeryMixin1: " + REGISTERED_MODEL_IDS.keySet());
 
         for (var entry : REGISTERED_MODEL_IDS.entrySet()){
             ResourceLocation resourceId = entry.getValue();
             StringReader reader = new StringReader(createItemModelJson(resourceId.toString()));
-            //System.out.println("ModelBakeryMixin: " + BlockModel.fromStream(reader));
             inputs.put(resourceId, BlockModel.fromStream(reader));
         }
     }
