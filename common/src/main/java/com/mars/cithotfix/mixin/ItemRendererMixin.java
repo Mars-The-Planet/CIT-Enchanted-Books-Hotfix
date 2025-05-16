@@ -38,6 +38,8 @@ public class ItemRendererMixin {
         BakedModel model = !Objects.equals(enchantId.toString(), "minecraft:sweeping_edge") ?
                 ((MultiLoaderModelManager) modelManager).getModel(OfVariant(new ResourceLocation("minecraft", BOOK_FOLDER + enchantName))) :
                 ((MultiLoaderModelManager) modelManager).getModel(OfVariant(new ResourceLocation("minecraft", BOOK_FOLDER + "sweeping")));
+
+        System.out.println("ItemRenderer: " + BOOK_FOLDER + " " + enchantName + " " + model + " " + new ResourceLocation("minecraft", BOOK_FOLDER + enchantName));
         return (model!=null && model != modelManager.getMissingModel()) ? model : original.call(models, stack);
     }
 }

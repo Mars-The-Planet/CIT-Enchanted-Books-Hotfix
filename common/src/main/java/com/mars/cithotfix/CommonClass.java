@@ -34,6 +34,7 @@ public class CommonClass {
             else{
                 BOOK_FOLDER = "";
             }
+            System.out.println("getTextures: " + BOOK_FOLDER + " " + path);
         }
         return IDs;
     }
