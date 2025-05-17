@@ -32,7 +32,6 @@ public class Cithotfix implements ModInitializer, ClientModInitializer, Preparab
             ResourceLocation model = id.withPrefix("item/ebooks/");
             REGISTERED_MODEL_IDS.put(id, model);
             context.addModels(model);
-            System.out.println(REGISTERED_MODEL_IDS.get(id));
         }
     }
 
