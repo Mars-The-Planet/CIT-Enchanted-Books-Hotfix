@@ -38,9 +38,7 @@ public abstract class ItemRendererMixin {
         ResourceLocation enchantId = storedEnchants.keySet().iterator().next().unwrapKey().get().location();
         String enchantName = enchantId.toString().substring(enchantId.toString().lastIndexOf(":")+1);
 
-        BakedModel model = !Objects.equals(enchantId.toString(), "minecraft:sweeping_edge") ?
-                Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + enchantName)), modelManager) :
-                Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + "sweeping")), modelManager);
+        BakedModel model = Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + enchantName)), modelManager);
 
         return (model!=null && model != modelManager.getMissingModel()) ? model : original.call(models, stack);
     }
