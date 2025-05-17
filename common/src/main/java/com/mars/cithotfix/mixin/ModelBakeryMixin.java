@@ -19,7 +19,7 @@ public class ModelBakeryMixin {
     public void loadBlockModel(ResourceLocation id, CallbackInfoReturnable<BlockModel> cir){
         if(id.toString().contains("ebooks")){
             Reader modelJson = new StringReader(createItemModelJson(id.toString()));
-            if ("".equals(modelJson)) return;
+            if ("".equals(modelJson.toString())) return;
 
             BlockModel model = BlockModel.fromStream(modelJson);
             model.name = id.toString();

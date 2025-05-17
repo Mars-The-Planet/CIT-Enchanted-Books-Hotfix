@@ -16,8 +16,6 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import java.util.Objects;
-
 import static com.mars.cithotfix.CommonClass.BOOK_FOLDER;
 import static com.mars.cithotfix.CommonClass.OfVariant;
 
@@ -35,9 +33,7 @@ public class ItemRendererMixin {
         ResourceLocation enchantId = storedEnchants.keySet().iterator().next().unwrapKey().get().location();
         String enchantName = enchantId.toString().substring(enchantId.toString().lastIndexOf(":")+1);
 
-        BakedModel model = !Objects.equals(enchantId.toString(), "minecraft:sweeping_edge") ?
-                Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + enchantName)), modelManager) :
-                Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + "sweeping")), modelManager);
+        BakedModel model = Services.PLATFORM.getModel(OfVariant(ResourceLocation.fromNamespaceAndPath("minecraft", BOOK_FOLDER + enchantName)), modelManager);
 
         return (model!=null && model != modelManager.getMissingModel()) ? model : original.call(models, stack);
     }
